@@ -1,0 +1,136 @@
+<form #employeeForm="ngForm"  ngNativeValidate (ngSubmit)="fullEmployee(employeeForm)">
+  <!--ngNativeValidate for (angular 2) required-->
+  <div class="card card-primary">
+
+    <div class="card bg-dark text-white">
+      <h3 class="card-title">Create Employee</h3>
+    </div>
+<!--styling error (has-erroe,control-label,help-block)-->
+    <div class="body">
+      <div class="form-group" [class.has-error]="fullNameControl.invalid">
+        <label for=fullname class="control.label">FullName</label>
+        <input required id="fullname" name="fullname" [(ngModel)]="fullname" #fullNameControl="ngModel" type="text"
+          class="form-control" >
+          <span class="help-block" *ngIf="fullNameControl.invalid">Full name is required</span>
+        <div>touched: {{fullNameControl.touched}}</div> 
+        <div>dirty: {{fullNameControl.dirty}}</div> 
+        <div>valid: {{fullNameControl.valid}}</div> 
+
+
+        
+      </div>
+
+
+      <div class="form-group">
+        <label for=email>Email</label>
+        <input id="email" name="mail" [(ngModel)]="email" type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for=phone>Phone number</label>
+        <input id="phone" name="phone" [(ngModel)]="phone" type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>Contact-Preference</label>
+        <div class="form-control">
+          <label class="radio-inline">
+            <input type="radio" name="pre" [(ngModel)]="pre" value="email" disabled>Email
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="pre" [(ngModel)]="pre" value="phone">Phone Number
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-control">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="isActive" [(ngModel)]="isActive" value="isActive">Is Active
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" name="boo" value="boo" checked disabled>Is Boolean
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="form-control">
+          <label class="radio-inline">
+            <input type="radio" name="gender" [(ngModel)]="gender" value="male">Male
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="gender" [(ngModel)]="gender" value="female">Female
+          </label>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="department">Department</label>
+        <select id="department" name="department" [(ngModel)]="department" class="forn-control">
+          <option value="help">help</option>
+          <option value="call">call</option>
+          <option value="video">video</option>
+          <option value="audio">audio</option>
+          <option value="run">run</option>
+        </select>
+
+
+
+      </div>
+
+      <div class="form-group">
+        <label for="dep">Dep</label>
+        <select id="dep" name="dep" [(ngModel)]="dep" class="forn-control">
+
+          <option *ngFor="let dept of deps" [value]="dept.id">{{dept.name}}
+          </option>
+        </select>
+
+
+
+      </div>
+
+      <div class="form-group col-md-7">
+        <label for=dob>Date Of Birth</label>
+        <input type="text" bsDatepicker [bsConfig]="datePickerConfig" id="dob" name="dob" [(ngModel)]="dob"
+          class="form-control">
+      </div>
+
+      <div class="form-group col-md-5">
+        <label for=dob>Birth Day Date</label>
+        <input type="text" bsDatepicker id="dob" name="dob" [(ngModel)]="dob" class="form-control">
+      </div>
+
+      <div class="form-group col-md-9">
+        <label for=work>Working Period</label>
+        <input type="text" bsDaterangepicker id="work" name="work" [(ngModel)]="work" class="form-control">
+      </div>
+
+      <!--show & hide-->
+      <div class="form-group">
+        <label for=pp>Photo Path</label>
+        <input id="pp" name="pp" [(ngModel)]="pp" type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <button type="button" (click)="togglePhotoPreview()"
+          class="btn btn-primary">{{previewPhoto? "Hide photo" : "Show photo"}}</button>
+
+      </div>
+      <div class="form-group">
+        <img [src]="pp" height="200" width="200" *ngIf="previewPhoto" />
+      </div>
+
+    </div>
+
+    <div class="card-footer">
+                                                        <!--employeeForm.invalid for full form-->
+      <button type="submit" class="btn btn-primary" [disabled]="fullNameControl.invalid">save</button>
+    </div>
+
+  </div>
+
+</form>
+<p>{{employeeForm.value |json}}</p>
