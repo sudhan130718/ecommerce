@@ -8,8 +8,6 @@ import { ListEmployeesComponent } from './employees/list-employees.component';
 import { CreateemployeeComponent } from './employees/createemployee.component';
 import {FormsModule} from '@angular/forms';
 
-
-
 const appRoutes :Routes = [
   {path:'list', component: ListEmployeesComponent},
   {path:'create', component: CreateemployeeComponent},
